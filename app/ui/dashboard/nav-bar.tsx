@@ -18,15 +18,15 @@ export default function Navbar() {
       height={50}
       className="pl-3 py-5"
      />
-    <button onClick={() => setOpen(!open)} className="md:hidden pr-1 pt-2">
-      { open ? <CloseRoundedIcon/> : <DehazeRoundedIcon/> }
-    </button>
-    <div className={clsx( 
+      <button onClick={() => setOpen(!open)} className="md:hidden pr-1 pt-2">
+        { open ? <CloseRoundedIcon/> : <DehazeRoundedIcon/> }
+      </button>
+      <div className={clsx( 
         open ? " MOBILE md:hidden bg-slate-400/75 h-38 pl-3 w-full underline":
         "DESKTOP hidden md:flex gap-3 mt-10 pr-3"
         )}>
          <Navlinks />
-    </div>       
+      </div>       
    </nav>
   );
 }
