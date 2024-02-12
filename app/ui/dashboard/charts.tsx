@@ -9,6 +9,36 @@ import {
 import Paper from "@mui/material/Paper";
 import { Divider } from "@mui/material";
 
+export function TodayActivityChart() {
+  return (
+    <Paper 
+      square={false} 
+      elevation={6}
+      className="flex justify-evenly h-14 w-96 lg:w-full text-xl font-medium"
+    >
+      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
+        <label>Crews</label> 
+        <span className="self-center text-blue-300">{todayActivity.crew}</span>
+      </div>
+      <Divider orientation="vertical" variant="middle" flexItem />
+      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
+        <label>Employees</label> 
+        <span className="self-center text-blue-300">{todayActivity.employees}</span>
+      </div>
+       <Divider orientation="vertical" variant="middle" flexItem />  
+      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
+        <label>Equipment</label> 
+        <span className="self-center text-blue-300">{todayActivity.equipment}</span>
+      </div>
+      <Divider orientation="vertical" variant="middle" flexItem />
+      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
+        <label>Timesheets</label> 
+        <span className="self-center text-blue-300">{todayActivity.timesheets}</span>
+      </div>
+
+    </Paper>
+  );
+}
 
 export function WeeklyAttendanceChart() {
     return (
@@ -54,46 +84,15 @@ export function MonthlyAttendanceChart() {
 );
 }
 
-export function TodayActivityChart() {
-  return (
-    <Paper 
-      square={false} 
-      elevation={6}
-      className="flex justify-evenly h-14 w-96 lg:w-full text-xl font-medium"
-    >
-      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
-        <label>Crews</label> 
-        <span className="self-center text-blue-300">{todayActivity.crew}</span>
-      </div>
-      <Divider orientation="vertical" variant="middle" flexItem />
-      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
-        <label>Employees</label> 
-        <span className="self-center text-blue-300">{todayActivity.employees}</span>
-      </div>
-       <Divider orientation="vertical" variant="middle" flexItem />  
-      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
-        <label>Equipment</label> 
-        <span className="self-center text-blue-300">{todayActivity.equipment}</span>
-      </div>
-      <Divider orientation="vertical" variant="middle" flexItem />
-      <div className="flex flex-col items-center w-56 hover:opacity-50"> 
-        <label>Timesheets</label> 
-        <span className="self-center text-blue-300">{todayActivity.timesheets}</span>
-      </div>
-
-    </Paper>
-  );
-}
-
 export function NotificationCenter() {
   return (
     <Paper 
       square={false} 
       elevation={6} 
-      className=""
+      className="h-14 w-96 lg:w-full pl-14 pr-14 text-xl font-medium"
     >
      <div>
-      <p>Hello! You have <span className="text-blue-300">0</span> new Notifications.</p>
+      <p>Hello Kraysheian! You have <span className="text-blue-300">0</span> new notifications.</p>
      </div> 
     </Paper>
   );
