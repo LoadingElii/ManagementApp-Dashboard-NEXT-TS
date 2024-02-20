@@ -89,10 +89,10 @@ export function NotificationCenter() {
     <Paper 
       square={false} 
       elevation={6} 
-      className="h-14 w-96 lg:w-full pl-14 pr-14 text-xl font-medium"
+      className="h-14 w-96 pl-14 pr-14 text-xl font-medium sm:w-full"
     >
      <div>
-      <p>Hello Kraysheian! You have <span className="text-blue-300">0</span> new notifications.</p>
+      <p>Hello Kray! You have <span className="text-blue-300">0</span> new notifications.</p>
      </div> 
     </Paper>
   );

@@ -27,9 +27,32 @@ export const todayActivity = {
     crew: 9, employees: 96, equipment: 6, timesheets: 0 
 }
 
+export const crewCols = [
+    { field: "id", headerName: "ID", width: 120 },
+    { field: "crewName", headerName: "Crew name", width: 120 },
+    { field: "crewMembers", headerName: "Crew members", width: 120 },
+    { field: "equipment", headerName: "Equipment", width: 120 },
+  
+]
+
+export const crewList = [
+    { id: 1, crewName: "Concrete", crewMembers: 6, equipment: 2 },
+    { id: 2, crewName: "Pipe burst",  crewMembers: 5, equipment: 2 },
+    { id: 3, crewName: "Clean up",  crewMembers: 4, equipment: 1 },
+    { id: 4, crewName: "Point repair",  crewMembers: 7, equipment: 3 },
+    { id: 5, crewName: "Concrete",  crewMembers: 5, equipment: 2 },
+    { id: 6, crewName: "Water",  crewMembers: 6, equipment: 2 },
+    { id: 7, crewName: "Sewer",  crewMembers: 8, equipment: 3 },
+    { id: 8, crewName: "Drain",  crewMembers: 5, equipment: 1 },
+    { id: 9, crewName: "Concrete",  crewMembers: 5, equipment: 2 },
+    { id: 10, crewName: "Water",  crewMembers: 6, equipment: 2 },
+]
+
 
 
 export default  [
     weeklyAttendance,
-    monthlyAttendance
+    monthlyAttendance,
+    crewCols,
+    crewList,
 ]

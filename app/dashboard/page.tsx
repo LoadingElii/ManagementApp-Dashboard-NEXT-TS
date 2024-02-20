@@ -1,5 +1,8 @@
-import { Paper } from "@mui/material";
-import { MonthlyAttendanceChart, NotificationCenter, TodayActivityChart, WeeklyAttendanceChart } from "../ui/dashboard/charts";
+import { MonthlyAttendanceChart, 
+  NotificationCenter,
+   TodayActivityChart, 
+   WeeklyAttendanceChart
+   } from "../ui/dashboard/charts";
 
 export default function Page() {
   return (
@@ -27,7 +30,7 @@ export default function Page() {
       </div>
 
 
-      <div className="mb-32 col-span-2">
+      <div className="mb-36 col-span-2">
         <p className="text-2xl font-semibold">Notification Center</p>
         <div>
           <NotificationCenter />
