@@ -9,7 +9,7 @@ import Navlinks from "./nav-links";
 
 export default function Navbar() {
   const [open,setOpen] = useState(false);
-  const [width,setWidth] = useState(window.innerWidth);
+  const [width,setWidth] = useState (window.innerWidth);
   const resizePoint = 768;
 
   useEffect(() => {

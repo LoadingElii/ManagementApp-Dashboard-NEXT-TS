@@ -1,33 +1,55 @@
 "use client";
 
-import { crewCols, crewList } from '@/app/lib/placeholder-data';
-import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
-import clsx from 'clsx';
+import { crewList } from '@/app/lib/placeholder-data';
 
-
-
+const headerLabels = [
+  {name: "ID"},
+  {name: "Crew Name"},
+  {name: "Crew Memebers"},
+  {name: "Equipment"},
+]
 
 export default function CrewTable() {
-    const columns: GridColDef[] = crewCols;
     const rows = crewList;
 
     return (
-        <div className=' h-96 w-full'>
-            <DataGrid
-              columns={columns}
-              rows={rows}
-              initialState={{
-                pagination: {
-                  paginationModel: { page: 0, pageSize: 5 },
-                },
-              }}
-              pageSizeOptions={[5,10]}
-              getCellClassName={(params: GridCellParams<Number,any,any,any>) => {
-                return (
-                  clsx(" text-blue-400")
-                );
-              }}
-            />       
-        </div>
-    );
+      <>
+      
+       <table className=" table-auto w-full h-3/5 mb-28 border-4 ">
+          <thead>
+            <tr>
+              {headerLabels.map((header) => {
+                return(
+                  <th scope="col"className="py-3 md:px-12 lg:px-24 text-2xl border-r-4 ">
+                    {header.name}
+                  </th>
+
+                )
+              })}
+            </tr>
+          </thead>
+          <tbody>
+              {rows.map((crews) => {
+                  return(
+                    <tr key={crews.id} className="text-xl border-2 hover:text-blue-500 hover:shadow-lg hover:bg-gray-400/75">
+                    <td className="lg:px-14">
+                              {crews.id}
+                          </td>
+                          <td className="lg:px-10">
+                              {crews.crewName}
+                          </td>
+                          <td className="lg:px-12">
+                              {crews.crewMembers}
+                          </td>
+                          <td className="lg:px-12">
+                              {crews.equipment}
+                          </td>
+                      </tr>
+                  )
+              })}
+          </tbody>
+        </table>
+      </>
+  )
 }
+
