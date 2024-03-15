@@ -1,5 +1,6 @@
 "use client";
 
+import { SendEmployeeId } from "@/app/lib/button";
 import { employeeList } from "@/app/lib/placeholder-data";
 
 const headerLabels = [
@@ -43,6 +44,9 @@ export default function EmployeeTable() {
                             </td>
                             <td className="lg:px-12">
                                 {employee.role}
+                            </td>
+                            <td className="lg: px-2">
+                                <SendEmployeeId id={employee.id} />
                             </td>
                         </tr>
                     )

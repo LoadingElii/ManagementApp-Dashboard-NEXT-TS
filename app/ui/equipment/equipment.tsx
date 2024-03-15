@@ -1,5 +1,6 @@
 "use client";
 
+import { SendEquipmentId } from "@/app/lib/button";
 import { equipmentList } from "@/app/lib/placeholder-data";
 
 const headerLabels = [
@@ -37,6 +38,9 @@ export default function EquipmentTable() {
                             </td>
                             <td className="lg:px-12">
                                 {equipment.type}
+                            </td>
+                            <td className="lg:px-2">
+                                <SendEquipmentId id={ equipment.id } />
                             </td>
                         </tr>
                     )

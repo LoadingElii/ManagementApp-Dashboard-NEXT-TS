@@ -1,4 +1,4 @@
-import EquipmentTable from "@/app/ui/equipment/equipment-table";
+import EquipmentTable from "@/app/ui/equipment/equipment";
 
 export default function Page() {
     return (
