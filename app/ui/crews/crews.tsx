@@ -1,7 +1,7 @@
 "use client";
 
 import { crewList } from "@/app/lib/placeholder-data";
-import { SendCrewId } from "@/app/lib/button";
+import { EditButton } from "@/app/lib/button";
 
 const headerLabels = [
   { name: "ID" },
@@ -12,8 +12,6 @@ const headerLabels = [
 
 export default function CrewTable() {
   const rows = crewList;
-
-
   return (
     <>
       <table className=" table-auto w-full h-3/5 mb-28 border-4 ">
@@ -44,7 +42,7 @@ export default function CrewTable() {
                   <td className="lg:px-12">{crew.crewMembers}</td>
                   <td className="lg:px-14">{crew.equipment}</td>       
                   <td className="lg:px-2"> 
-                    <SendCrewId id={crew.id} /> 
+                    <EditButton id={crew.id} /> 
                   </td>
                 </tr>
               </>

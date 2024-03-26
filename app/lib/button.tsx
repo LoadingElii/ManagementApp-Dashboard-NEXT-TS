@@ -1,39 +1,26 @@
 import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
-export function SendCrewId({ id } : { id: number }) {
+export function EditButton({ id } : { id: number }) {
+    const pathname = usePathname();
     return(
         <Link 
-            href={`/dashboard/crews/${id}`}
+            href={`${pathname}/${id}`}
         >
             <EditIcon />
         </Link>
     );
 }
-export function SendEmployeeId({ id } : { id: number }) {
+
+export function CreateButton() {
+    const pathname = usePathname();
     return(
-        <Link 
-            href={`/dashboard/employees/${id}`}
+        <Link
+            href={`${pathname}/create`}
         >
-            <EditIcon />
-        </Link>
-    );
-}
-export function SendEquipmentId({ id } : { id: number }) {
-    return(
-        <Link 
-            href={`/dashboard/equipment/${id}`}
-        >
-            <EditIcon />
-        </Link>
-    );
-}
-export function SendTimesheetId({ id } : { id: number }) {
-    return(
-        <Link 
-            href={`/dashboard/timesheets/${id}`}
-        >
-            <EditIcon />
+            <AddIcon />
         </Link>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { SendEquipmentId } from "@/app/lib/button";
+import { EditButton} from "@/app/lib/button";
 import { equipmentList } from "@/app/lib/placeholder-data";
 
 const headerLabels = [
@@ -40,7 +40,7 @@ export default function EquipmentTable() {
                                 {equipment.type}
                             </td>
                             <td className="lg:px-2">
-                                <SendEquipmentId id={ equipment.id } />
+                                <EditButton id={ equipment.id } />
                             </td>
                         </tr>
                     )

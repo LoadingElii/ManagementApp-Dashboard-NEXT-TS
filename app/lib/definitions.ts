@@ -8,7 +8,8 @@ export type Crew = {
 export type Employee = {
     id: number;
     name: string;
-    password: string;
+    password?: string;
+    email: string,
     role: string;
 }
 
@@ -18,3 +19,7 @@ export type Equipment = {
     type: string;
     equipmentId: number;
 }
+
+export type State = {
+    message?: string | null;
+};
