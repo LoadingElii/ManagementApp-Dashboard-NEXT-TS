@@ -1,49 +1,75 @@
-"use server";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { z } from "zod";
-import { State } from "./definitions";
 
-const FormSchema = z.object({
-    name: z.string({
-        invalid_type_error: "Please enter a valid name."
-    }),
-    role: z.string({
-        invalid_type_error: "Please enter a valid role."
-    }),
-    email: z.string({
-        invalid_type_error: "Please enter a valid email."
-    }),
+import { unstable_noStore as noStore } from "next/cache";
+import { Crew, Employee, Equipment } from "./definitions";
+import { CREW_BASE_URL, EMPLOYEE_BASE_URL, EQUIPMENT_BASE_URL } from "./placeholder-data";
 
-});
 
-export async function createEmployee(prevState: any, formData: FormData){
-    const employee = FormSchema.safeParse({
-        name: formData.get("name"),
-        role: formData.get("role"),
-        email: formData.get("email"),
-    });
+//Employee data
+export default async function getAllEmployees() {
 
-    console.log(employee);
-
-    if(!employee.success) {
-        return {
-            message: "Please enter valid credentials."
-        }
-    };
-    
-    const res = await fetch('http://localhost:8088/api/v1/employee/save', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    noStore();
+    const res = await fetch(EMPLOYEE_BASE_URL+ "/all", {
+        method : "GET",
+        headers : {
+           "Content-Type" : "application/json" ,
         },
-        body: JSON.stringify(employee),
-      })
-     
-      const data = await res.json()
-      console.log(data);
+    })
 
-      revalidatePath('/dashboard/employees');
-      redirect('/dashboard/employees');
-      
-    }
+    const data: Employee[] = await res.json();
+    console.log(data)
+
+    return data;
+}
+
+export async function getEmployee(id:number) {
+
+    noStore();
+    const res = await fetch(EMPLOYEE_BASE_URL +"/"+ id, { method: "GET" })
+  
+    const data:Employee = await res.json();
+    console.log(data);
+  
+    return data;
+}
+
+//Equipment data
+export async function getAllEquipment() {
+    noStore();
+    const res = await fetch(EQUIPMENT_BASE_URL + "/all", {method: "GET"})
+
+    const data:Equipment[] = await res.json();
+    console.log("EQUIPMENT GET ALL" + data)
+
+    return data;
+}
+
+export async function getEquipment(id: number) {
+    noStore();
+    const res = await fetch(EQUIPMENT_BASE_URL + "/" + id, {method: "GET"})
+
+    const data:Equipment = await res.json();
+    console.log("SINGLE EQUIPMENT" + data);
+
+    return data;
+}
+
+//Crew data
+export async function getAllCrews() {
+    noStore();
+    const res = await fetch(CREW_BASE_URL + "/all", {method: "GET"})
+
+    const data:Crew[] = await res.json();
+    console.log("CREW GET ALL" + JSON.stringify(data));
+
+    return data;
+}
+
+export async function getCrew(id: number) {
+    noStore();
+    const res = await fetch(CREW_BASE_URL + "/" + id, {method: "GET"})
+
+    const data:Crew = await res.json();
+    console.log("SINGLE CREW" + data);
+
+    return data;
+}

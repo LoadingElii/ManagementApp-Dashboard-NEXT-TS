@@ -1,16 +1,21 @@
 "use client";
+import { deleteCrew, updateCrew } from "@/app/lib/action";
 import { Crew } from "@/app/lib/definitions";
-import { crewExample } from "@/app/lib/placeholder-data";
 import { Button, List, ListItem, Paper } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
+import { useFormState } from "react-dom";
 
-export default function CrewCard() {
+export default function CrewCard({crew} : {crew : Crew}) {
   const [edit, setEdit] = useState(false);
+  const initialState = {
+    message: " ",
+  };
+  const [state, dispatch] = useFormState(updateCrew, initialState)
 
   if (edit) {
     return (
-      <form action="">
+      <form action={dispatch}>
         <Paper
           elevation={6}
           square={false}
@@ -28,8 +33,8 @@ export default function CrewCard() {
               <input
                 type="text"
                 name="id"
-                id="id"
                 placeholder="Crew ID"
+                value={crew.id}
                 className="bg-gray-50 max-w-[8rem] md:max-w-[10rem]"
               />
             </div>
@@ -43,9 +48,10 @@ export default function CrewCard() {
               <input
                 type="text"
                 name="name"
-                id="name"
                 placeholder="Crew Name"
+                defaultValue={crew.name}
                 className="bg-gray-50  max-w-[8rem] md:max-w-[10rem] "
+                required              
               />
             </div>
           </div>
@@ -54,7 +60,7 @@ export default function CrewCard() {
             <List className=" max-h-[17rem] border-2">
               <label htmlFor="Crew Info" className="font-semibold">Crew Info:</label>
 
-              {crewExample.members.map((member) => {
+              {crew.members?.map((member) => {
                 return (
                   <div className="grid grid-cols-2">
                     <div className="">
@@ -69,7 +75,9 @@ export default function CrewCard() {
                           type="text"
                           name="members"
                           placeholder="Member Name"
+                          defaultValue={member.name}
                           className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
+                          required
                         />
                       </ListItem>
                     </div>
@@ -86,7 +94,9 @@ export default function CrewCard() {
                           type="text"
                           name="Memeber Role"
                           placeholder="Member Role"
+                          defaultValue={member.role}
                           className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
+                          required
                         />
                       </ListItem>
                     </div>
@@ -99,7 +109,7 @@ export default function CrewCard() {
             <List className="border-2">
               <label htmlFor="Equipment Info" className="font-semibold">Equipment Info:</label>
 
-              {crewExample.equipment.map((equipment) => {
+              {crew.equipment?.map((equipment) => {
                 return (
                   <div className="grid grid-cols-2">
                     <div className="">
@@ -112,8 +122,9 @@ export default function CrewCard() {
                         </label>
                         <input
                           type="text"
-                          name="Equipment Brand"
+                          name="Brand"
                           placeholder="Equipment Brand"
+                          defaultValue={equipment.brand}
                           className=" max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
                         />
                       </ListItem>
@@ -127,9 +138,11 @@ export default function CrewCard() {
                         >Type:</label>
                         <input
                           type="text"
-                          name="Equipment Type"
+                          name="Equipment"
                           placeholder="Equipment Type"
+                          defaultValue={equipment.type}
                           className="max-w-[8rem] md:max-w-[10rem] bg-gray-50"
+                          required
                         />
                       </ListItem>
                     </div>
@@ -137,20 +150,23 @@ export default function CrewCard() {
                 );
               })}
             </List>
+            <div className="text-base text-red-600">{state?.message}</div>
           </div>
           <div className="">
             <Button
-              onClick={() => setEdit(!edit)}
+              type="submit"
               variant="contained"
-              color="primary"
+              color="success"
             >
-              Edit
+              Submit
             </Button>
-            <Link href={"/dashboard/crews"}>
-              <Button variant="contained" color="error">
-                Exit
-              </Button>
-            </Link>
+            <Button 
+              variant="contained" 
+              color="error"
+              onClick={() => setEdit(!edit)}
+            >
+                Cancel
+            </Button>
           </div>
         </Paper>
       </form>
@@ -169,9 +185,9 @@ export default function CrewCard() {
             <span className="font-semibold">
               Crew ID:
             </span>
-            {crewExample.id}
+            {crew.id}
           </label>
-          <label htmlFor="Crew name"><span className="font-semibold">Crew Name:</span> {crewExample.name}</label>
+          <label htmlFor="Crew name"><span className="font-semibold">Crew Name:</span> {crew.name}</label>
         </div>
         <div>
           <List className="max-h-[17rem] border-2">
@@ -181,7 +197,7 @@ export default function CrewCard() {
             >
               Crew Info:
             </label>
-            {crewExample.members.map((member) => {
+            {crew.members?.map((member) => {
               return (
                 <div className="grid grid-cols-2">
                   <ListItem className="flex gap-1">
@@ -214,7 +230,7 @@ export default function CrewCard() {
               Equipment Info:
             </label>
 
-            {crewExample.equipment.map((equipment) => {
+            {crew.equipment?.map((equipment) => {
               return (
                 <div className="grid grid-cols-2">
                   <ListItem className="flex gap-1">
@@ -244,6 +260,13 @@ export default function CrewCard() {
           onClick={() => setEdit(!edit)}
         >
           Edit
+        </Button>
+        <Button 
+          variant="contained"
+          color="secondary"
+          onClick={() => deleteCrew(crew.id)}
+        >
+            Delete
         </Button>
         <Link href={"/dashboard/crews"}>
           <Button variant="contained" color="error">

@@ -1,3 +1,13 @@
+export const user = {
+    username: "Eli",
+    password:"Loadingeli",
+}
+export const EMPLOYEE_BASE_URL = "http://localhost:8088/api/v1/employee";
+
+export const  EQUIPMENT_BASE_URL = "http://localhost:8088/api/v1/equipment";
+
+export const  CREW_BASE_URL = "http://localhost:8088/api/v1/crew";
+
 export const weeklyAttendance = [
     { attendance: 165, day: "Mon" },
     { attendance: 140, day: "Tue" },

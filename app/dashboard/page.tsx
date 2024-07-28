@@ -15,16 +15,16 @@ export default function Page() {
         </div>
       </div>
 
-      <div>
+      <div className=" ml-20 lg:max-w-md">
         <p className="text-2xl font-semibold">Weekly Attendance</p>
-        <div className="lg:w-96">
+        <div className="lg:min-w-96">
           <WeeklyAttendanceChart />
         </div>
       </div>
 
-      <div>
+      <div className="lg:min-w-96">
         <p className="text-2xl font-semibold">Monthly Attendance</p>
-        <div className="lg:w-96">
+        <div className="lg:min-w-lg">
           <MonthlyAttendanceChart />
         </div>
       </div>

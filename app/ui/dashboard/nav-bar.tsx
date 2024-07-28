@@ -7,13 +7,14 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import clsx from "clsx";
 import Navlinks from "./nav-links";
 
+
 export default function Navbar() {
   const [open,setOpen] = useState(false);
   const [width,setWidth] = useState(window.innerWidth);
   const resizePoint = 768;
 
   useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
+    const handleResize = () => setWidth(width);
 
     window.addEventListener("resize", handleResize);   
 
@@ -21,7 +22,7 @@ export default function Navbar() {
       window.removeEventListener("resize", handleResize);
     }
 
-  },[]);
+  },[width]);
 
   if( width <= resizePoint ) {
     return(

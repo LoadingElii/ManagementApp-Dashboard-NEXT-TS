@@ -1,17 +1,21 @@
 "use client";
-import { equipmentList } from "@/app/lib/placeholder-data";
+import { deleteEquipment, updateEquipment } from "@/app/lib/action";
+import { Equipment } from "@/app/lib/definitions";
 import { Paper, List, ListItem, Button } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
+import { useFormState } from "react-dom";
 
-export default function EquipmentCard({id} : {id: number}) {
-    const equipment = equipmentList[id];
-
+export default function EquipmentCard({ equipment }: { equipment: Equipment }) {
+  const initalState = {
+    message: " ",
+  };
   const [edit, setEdit] = useState(false);
+  const [state, dispatch] = useFormState(updateEquipment, initalState);
 
   if (edit) {
     return (
-      <form action="">
+      <form action={dispatch}>
         <Paper elevation={6} square={false} className="max-w-[55rem]">
           <div>
             <List className=" max-h-[17rem] border-2">
@@ -23,18 +27,33 @@ export default function EquipmentCard({id} : {id: number}) {
                 <div>
                   <ListItem>
                     <label htmlFor="Equipment id" className="font-semibold">
-                        Equipment ID:
+                      Equipment ID:
                     </label>
                     <input
                       type="text"
                       name="id"
-                      id="id"
                       placeholder="ID"
+                      value={equipment.id}
                       className="bg-gray-50 max-w-[8rem] md:max-w-[10rem]"
+                      required
                     />
                   </ListItem>
                 </div>
-
+                <div className="">
+                  <ListItem className="flex gap-1">
+                    <label htmlFor="Equipment ID" className="font-medium">
+                      Equipment ID:
+                    </label>
+                    <input
+                      type="text"
+                      name="EquipmentId"
+                      placeholder="equipment ID"
+                      defaultValue={equipment.equipmentId}
+                      className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
+                      required
+                    />
+                  </ListItem>
+                </div>
                 <div className="">
                   <ListItem className="flex gap-1">
                     <label htmlFor="Equipment Brand" className="font-medium">
@@ -43,8 +62,10 @@ export default function EquipmentCard({id} : {id: number}) {
                     <input
                       type="text"
                       name="Brand"
-                      placeholder={equipment.brand}
+                      placeholder="equipment brand"
+                      defaultValue={equipment.brand}
                       className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
+                      required
                     />
                   </ListItem>
                 </div>
@@ -57,8 +78,10 @@ export default function EquipmentCard({id} : {id: number}) {
                     <input
                       type="text"
                       name="Equipment Type"
-                      placeholder={equipment.type}
+                      placeholder="equipment type"
+                      defaultValue={equipment.type}
                       className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
+                      required
                     />
                   </ListItem>
                 </div>
@@ -67,17 +90,19 @@ export default function EquipmentCard({id} : {id: number}) {
           </div>
           <div className="">
             <Button
-              onClick={() => setEdit(!edit)}
+              type="submit"
               variant="contained"
-              color="primary"
+              color="success"
             >
-              Edit
+              Submit
             </Button>
-            <Link href={"/dashboard/employees"}>
-              <Button variant="contained" color="error">
-                Exit
-              </Button>
-            </Link>
+            <Button 
+              variant="contained" 
+              color="error" 
+              onClick={() => setEdit(!edit)}
+            >
+              Cancel
+            </Button>
           </div>
         </Paper>
       </form>
@@ -95,9 +120,15 @@ export default function EquipmentCard({id} : {id: number}) {
             <div className="grid grid-cols-2">
               <ListItem className="flex gap-1">
                 <label htmlFor="Equipment ID" className="font-medium">
-                  Equipment ID:
+                  ID:
                 </label>
                 {equipment.id}
+              </ListItem>
+              <ListItem className="flex gap-1">
+                <label htmlFor="Equipment ID" className="font-medium">
+                  Equipment ID:
+                </label>
+                {equipment.equipmentId}
               </ListItem>
               <ListItem className="flex gap-1">
                 <label htmlFor="Equipment Brand" className="font-medium">
@@ -122,6 +153,13 @@ export default function EquipmentCard({id} : {id: number}) {
           >
             Edit
           </Button>
+          <Button 
+          variant="contained"
+          color="secondary"
+          onClick={() => deleteEquipment(equipment.id)}
+        >
+            Delete
+        </Button>
           <Link href={"/dashboard/equipment"}>
             <Button variant="contained" color="error">
               Exit
@@ -132,4 +170,3 @@ export default function EquipmentCard({id} : {id: number}) {
     </form>
   );
 }
-

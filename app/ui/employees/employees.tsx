@@ -1,7 +1,6 @@
-"use client";
 
 import { CreateButton, EditButton } from "@/app/lib/button";
-import { employeeList } from "@/app/lib/placeholder-data";
+import { Employee } from "@/app/lib/definitions";
 
 const headerLabels = [
     {name: "ID"},
@@ -11,8 +10,8 @@ const headerLabels = [
 ]
 
 
-export default function EmployeeTable() {
-    const rows = employeeList;  
+export default function EmployeeTable({employees}: {employees: Employee[]}) {
+
     return (
         <>
         
@@ -26,11 +25,15 @@ export default function EmployeeTable() {
                         </th>
                     )
                   })}
+                  <th className=" py-3 px-2 text-2xl border-r-4 hover:text-blue-500 hover:bg-gray-400/75">
+                    <CreateButton />
+                  </th>
                 </tr>
+                
 
             </thead>
             <tbody>
-                {rows.map((employee) => {
+                {employees.map((employee) => {
                     return(
                         <tr key={employee.id} className="text-xl border-2 hover:text-blue-500 hover:shadow-lg hover:bg-gray-400/75">
                             <td className="lg:px-14">
@@ -44,9 +47,6 @@ export default function EmployeeTable() {
                             </td>
                             <td className="lg:px-12">
                                 {employee.role}
-                            </td>
-                            <td className="lg: px-2">
-                                <CreateButton />
                             </td>
                             <td className="lg: px-2">
                                 <EditButton id={employee.id} />

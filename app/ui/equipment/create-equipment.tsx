@@ -1,36 +1,34 @@
 "use client";
-import { createEmployee } from "@/app/lib/action";
+import { createEquipment } from "@/app/lib/action";
 import { Paper, List, ListItem, Button } from "@mui/material";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 
-export default function CreateEmployeeCard() {
+export default function CreateEquipmentCard() {
     const startState = {
       message: " " 
     };
   
-    const [state, dispatch] = useFormState(createEmployee, startState); 
+    const [state, dispatch] = useFormState(createEquipment, startState); 
       return (
         <form action={dispatch} >
           <Paper elevation={6} square={false} className="max-w-[55rem]">
             <div>
               <List className=" max-h-[17rem] border-2">
-                <label htmlFor="Employee Info" className="font-semibold">
-                  Employee Info:
+                <label htmlFor="Equipment Info" className="font-semibold">
+                  Equipment Info:
                 </label>
                     
                 <div className="grid grid-cols-2">
                     <div className="">
                     <ListItem className="flex gap-1">
-                      <label htmlFor="Employee Name" className="font-medium">
-                        Employee Name:
+                      <label htmlFor="Equipment ID" className="font-medium">
+                        Equipment ID:
                       </label>
                       <input
                         type="text"
-                        name="name"
-                        id="name"
-                        key={"name"}
-                        placeholder="Full Name"
+                        name="EquipmentId"
+                        placeholder=" Equipment ID"
                         className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
                         required
                       />
@@ -39,15 +37,13 @@ export default function CreateEmployeeCard() {
   
                   <div className="">
                     <ListItem className="flex gap-1">
-                      <label htmlFor="Employee Email" className="font-medium">
-                        Employee Email:
+                      <label htmlFor="Equipment Brand" className="font-medium">
+                        Equipment Brand:
                       </label>
                       <input
                         type="text"
-                        name="email"
-                        id="email"
-                        key={"email"}
-                        placeholder="Email"
+                        name="brand"
+                        placeholder="brand"
                         className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
                         required
                       />
@@ -55,15 +51,13 @@ export default function CreateEmployeeCard() {
                   </div>
                   <div className="">
                     <ListItem className="flex gap-1">
-                      <label htmlFor="Employee Role" className="font-medium">
-                        Employee Role:
+                      <label htmlFor="Equipment Type" className="font-medium">
+                        Equipment Type:
                       </label>
                       <input
                         type="text"
-                        name="role"
-                        id="role"
-                        key={"role"}
-                        placeholder="Role"
+                        name="type"
+                        placeholder="type"
                         className="max-w-[8rem] md:max-w-[10rem] bg-gray-50 "
                         required
                       />
@@ -83,7 +77,7 @@ export default function CreateEmployeeCard() {
               >
                 Create
               </Button>
-              <Link href={"/dashboard/employees"}>
+              <Link href={"/dashboard/equipment"}>
                 <Button variant="contained" color="error">
                   Exit
                 </Button>
